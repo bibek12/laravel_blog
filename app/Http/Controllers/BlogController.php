@@ -11,8 +11,11 @@ class BlogController extends Controller
     //
     protected $limit=3;
     public function index(){
-       $posts=POST::with('user')->latestFirst()->simplePaginate($this->limit);
-       return view("blog.index",compact('posts'))->render();
+       $posts=POST::with('user')
+       ->latestFirst()
+       ->published()
+       ->simplePaginate($this->limit);
+       return view("blog.index",compact('posts'));
        
     }
 }
