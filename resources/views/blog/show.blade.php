@@ -7,7 +7,7 @@
             @if($post->image_url)
                 <div class="post-item-image">
                     <a href="#">
-                        <img src="{{$post->image_url}}" alt="">
+                        <img src="{{$post->image_url}}" alt="{{$post->title}}">
                     </a>
                 </div>
             @endif
