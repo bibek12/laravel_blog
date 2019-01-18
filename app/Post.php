@@ -11,8 +11,13 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 class Post extends Model
 {
     protected $dates=['published_at'];
+    
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
     //u
     public function getImageUrlAttribute($value){
