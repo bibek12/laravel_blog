@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Post;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class User extends Authenticatable
 {
@@ -36,4 +37,17 @@ class User extends Authenticatable
     public function getRouteKeyName(){
         return 'slug';
     }
+
+    public function getBioHtmlAttribute($value){
+        return $this->bio? Markdown::convertToHtml(e($this->bio)):NUll;
+    }
+
+    public function gavatar(){
+        $email = $this->email;
+        $default = "https://modernmarvels.in/images/avatar-user-business-man-399587fe24739d5a-512x512.png";
+        $size = 100;
+
+        return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+    }
+
 }
