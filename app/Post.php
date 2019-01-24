@@ -11,7 +11,7 @@ use App\Post;
 
 class Post extends Model
 {
-    protected $fillable=['title','slug','excerpt','body','published_at','category_id','view_count'];
+    protected $fillable=['title','slug','excerpt','body','published_at','category_id','view_count','image'];
     protected $dates=['published_at'];
     
     

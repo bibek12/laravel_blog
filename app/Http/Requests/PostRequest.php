@@ -29,8 +29,8 @@ class PostRequest extends FormRequest
             'excerpt'=>'required',
             'body'=>'required',
             'published_at'=>'nullable|date_format:Y-m-d H:i:s',
-            'category_id'=>'required'
-
+            'category_id'=>'required',
+            'image'=>'mimes:jpg,jpeg,bmp,png',
         ];
     }
 }
