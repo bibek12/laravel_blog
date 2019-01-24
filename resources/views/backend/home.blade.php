@@ -20,7 +20,7 @@
                   <h3>Welcome To My Blog</h3>
                   <p class="lead text-muted">Hello {{Auth::user()->name}}, Welcome To My Blog</p>
                   <h4>Get Strated</h4>
-                  <p><a href="{{route('blog.create')}}" class="btn btn-primary">Write Your First Blog Post</a></p>
+                  <p><a href="{{route('backend.blog.create')}}" class="btn btn-primary">Write Your First Blog Post</a></p>
               </div>
             </div>
           </div>

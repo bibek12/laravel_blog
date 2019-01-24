@@ -18,6 +18,10 @@
   
   <link rel="stylesheet" href="{{asset('/backend/css/skins/skin-blue.min.css')}}">
 
+  <link rel="stylesheet" href="{{asset('/backend/plugins/simplemde/simplemde.min.css')}}">
+  <link rel="stylesheet" href="{{asset('/backend/css/custom.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
  
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -57,6 +61,10 @@
 <script src="{{asset('/backend/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('/backend/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/backend/plugins/simplemde/simplemde.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('/backend/js/adminlte.min.js')}}"></script>
 

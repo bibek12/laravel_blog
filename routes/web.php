@@ -22,4 +22,6 @@ Auth::routes();
 
 Route::get('/home', 'Backend\HomeController@index')->name('home');
 
-Route::resource('/backend/blog','Backend\BlogController');
+Route::resource('/backend/blog','Backend\BlogController',[
+       'as'=>'backend' 
+]);

@@ -7,6 +7,8 @@ use App\User;
 use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use App\Post;
+use Intervention\Image\Facades\Image;
+
 
 
 class Post extends Model
@@ -27,22 +29,23 @@ class Post extends Model
         return $this->attributes['published_at']=$value?:NULL;
     }
     public function getImageUrlAttribute($value){
+        $directory=config('cms.image.directory');
         $imageUrl="";
         if(!is_null($this->image)){
-            $imagePath=public_path()."/img/".$this->image;
-            if(file_exists($imagePath)) $imageUrl=asset("img/".$this->image);
+            $imagePath=public_path()."/{$directory}/".$this->image;
+            if(file_exists($imagePath)) $imageUrl=asset("{$directory}/".$this->image);
         }
         return $imageUrl;
     }
 
     public function getImageThumbUrlAttribute($value){
         $imageUrl="";
-
+        $directory=config('cms.image.directory');
         if(!is_null($this->image)){
             $ext=substr(strrchr($this->image,'.'),1);
             $thumbnail=str_replace(".{$ext}","_thumb.{$ext}",$this->image);
-            $imagePath=public_path()."/img/".$thumbnail;
-            if(file_exists($imagePath)) $imageUrl=asset("img/".$thumbnail);
+            $imagePath=public_path()."/{$directory}/".$thumbnail;
+            if(file_exists($imagePath)) $imageUrl=asset("{$directory}/".$thumbnail);
         }
         return $imageUrl;
     }

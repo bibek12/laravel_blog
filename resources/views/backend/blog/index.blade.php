@@ -11,7 +11,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li><a href="{{route('blog.index')}}">Blog</a></li>
+        <li><a href="{{route('backend.blog.index')}}">Blog</a></li>
         <li class="active">All Posts</li>
        </ol>
     </section>
@@ -21,7 +21,7 @@
             <div class="box">
                 <div class="box-header">
                     <div class="pull-left">
-                        <a href="{{route('blog.create')}}" class="btn btn-success">Add New</a>
+                        <a href="{{route('backend.blog.create')}}" class="btn btn-success">Add New</a>
                     </div>
                 </div>
                <div class="box-body">
@@ -56,10 +56,10 @@
                                 {!! $post->publicationLabel() !!}
                              </td>
                              <td>
-                                <a href="{{route('blog.edit',$post->id)}}" class="btn btn-xs btn-default">
+                                <a href="{{route('backend.blog.edit',$post->id)}}" class="btn btn-xs btn-default">
                                     <i class="fa fa-edit"></i>  
                                 </a>
-                                <a href="{{route('blog.destroy',$post->id)}}" class="btn btn-xs btn-danger">
+                                <a href="{{route('backend.blog.destroy',$post->id)}}" class="btn btn-xs btn-danger">
                                     <i class="fa fa-times"></i>  
                                 </a>
                              </td>
