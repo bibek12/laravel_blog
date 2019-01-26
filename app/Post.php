@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use Carbon\Carbon;
@@ -11,8 +12,10 @@ use Intervention\Image\Facades\Image;
 
 
 
+
 class Post extends Model
 {
+    use SoftDeletes;
     protected $fillable=['title','slug','excerpt','body','published_at','category_id','view_count','image'];
     protected $dates=['published_at'];
     
@@ -84,7 +87,13 @@ class Post extends Model
     public function scopePublished($query){
         return $query->where("published_at","<=",Carbon::now());
     }
-   
+    public function scopeScheduled($query){
+        return $query->where("published_at",">",Carbon::now());
+    }
+    public function scopeDraft($query){
+        return $query->whereNull("published_at");
+    }
+  
     public function getBodyHtmlAttribute($value){
         return $this->body? Markdown::convertToHtml(e($this->body)):NUll;
     }

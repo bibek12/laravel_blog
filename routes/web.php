@@ -25,3 +25,13 @@ Route::get('/home', 'Backend\HomeController@index')->name('home');
 Route::resource('/backend/blog','Backend\BlogController',[
        'as'=>'backend' 
 ]);
+
+Route::put('backend/blog/restore/{blog}',[
+       'uses'=>'Backend\BlogController@restore',
+       'as'=>'backend.blog.restore'
+]);
+
+Route::delete('backend/blog/force-destory/{blog}',[
+       'uses'=>'Backend\BlogController@forceDestroy',
+       'as'=>'backend.blog.force-destroy'
+]);

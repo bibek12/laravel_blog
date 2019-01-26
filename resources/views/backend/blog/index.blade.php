@@ -19,59 +19,38 @@
         <div class="row">
           <div class="col-md-12">
             <div class="box">
-                <div class="box-header">
+                <div class="box-header clearfix">
                     <div class="pull-left">
-                        <a href="{{route('backend.blog.create')}}" class="btn btn-success">Add New</a>
+                        <a href="{{route('backend.blog.create')}}" class="btn btn-success"><i class="fa fa-plus"></i>  Add New</a>
+                    </div>
+                    <div class="pull-right" style="padding:7px 0;">
+                    <?php $links=[] ?>
+                    @foreach($statusList as $key => $value)
+                        @if($value)
+                            <?php $selected=Request::get('status')==$key?'selected-status':'' ?>
+                            <?php $links[]= "<a class=\"{$selected}\" href=\"?status={$key}\">".ucwords($key)."({$value})</a>" ?>
+                        @endif
+                    @endforeach
+                       {!! implode('|',$links) !!}
                     </div>
                 </div>
                <div class="box-body">
-               @if(session('message'))
-                    <div class="alert alert-success">
-                        {{session('message')}}
-                    </div>
-               @endif
+                @include('backend.blog.message')
                 @if(! $posts->count())
                     <div class="alert alert-danger">
                         <strong>Record Not Found</strong>
                     </div>
                 @else
-                 <table class="table table-bordered">
-                     <thead>
-                         <tr>
-                             <td>Title</td>
-                             <td width='120'>Author</td>
-                             <td width='150'>Category</td>
-                             <td>Date</td>
-                             <td width='80'>Action</td>
-                         </tr>
-                     </thead>
-                     <tbody>
-                        @foreach($posts as $post)
-                         <tr>
-                             <td>{{$post->title}}</td>
-                             <td>{{$post->user->name}}</td>
-                             <td>{{$post->category->title}}</td>
-                             <td>
-                                <abbr title="{{$post->dateFormatted(true)}}">{{$post->dateFormatted()}}</abbr>
-                                {!! $post->publicationLabel() !!}
-                             </td>
-                             <td>
-                                <a href="{{route('backend.blog.edit',$post->id)}}" class="btn btn-xs btn-default">
-                                    <i class="fa fa-edit"></i>  
-                                </a>
-                                <a href="{{route('backend.blog.destroy',$post->id)}}" class="btn btn-xs btn-danger">
-                                    <i class="fa fa-times"></i>  
-                                </a>
-                             </td>
-                         </tr>
-                        @endforeach
-                     </tbody>
-                 </table>
-                 @endif
+                    @if($onlyTrashed)
+                        @include('backend.blog.table-trash')
+                    @else
+                        @include('backend.blog.table')
+                    @endif
+                @endif
               </div><!--box body -->
                 <div class="box-footer clearfix">
                     <div class="pull-left">
-                        {{$posts->render()}}
+                        {{$posts->appends(Request::query())->render()}}
                     </div>
                     <div class="pull-right">
                      <small>
