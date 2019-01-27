@@ -7,10 +7,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Post;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Laratrust\Traits\LaratrustUserTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    use LaratrustUserTrait; 
 
     /**
      * The attributes that are mass assignable.

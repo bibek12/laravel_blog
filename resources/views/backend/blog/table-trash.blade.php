@@ -9,6 +9,7 @@
             </tr>
         </thead>
         <tbody>
+        <?php $request=request() ?>
         @foreach($posts as $post)
             <tr>
                 <td>{{$post->title}}</td>
@@ -20,14 +21,26 @@
                 </td>
                 <td>
                 {!!Form::open(['style'=>'display:inline-block','method'=>'PUT','route'=>['backend.blog.restore',$post->id]])!!}
+                    @if(check_user_permissions($request,"Blog@restore",$post->id))
                     <button title="Restore" class="btn btn-xs btn-default">
                         <i class="fa fa-refresh"></i>  
                     </button>
+                    @else
+                    <button title="Restore" onclick="return false" class="btn btn-xs btn-default disabled">
+                        <i class="fa fa-refresh"></i>  
+                    </button>
+                    @endif
                 {!!Form::close()!!}
                 {!!Form::open(['style'=>'display:inline-block','method'=>'delete','route'=>['backend.blog.force-destroy',$post->id]])!!}
+                @if(check_user_permissions($request,"Blog@forceDestroy",$post->id))
                     <button title="Perment Delete" type="submit" onclick="return confirm('You are about to delete a post permanently.Are You Sure?')" class="btn btn-xs btn-danger">
                         <i class="fa fa-times"></i>  
                     </button>
+                @else
+                    <button title="Perment Delete" type="button" onclick="return flase;" class="btn btn-xs btn-danger disabled">
+                        <i class="fa fa-times"></i>  
+                    </button>
+                @endif
                 {!!Form::close()!!}
                 </td>
             </tr>

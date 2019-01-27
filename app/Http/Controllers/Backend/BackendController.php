@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class BackendController extends Controller
 {
+    protected $limit=5;
      /**
      * Create a new controller instance.
      *
@@ -16,5 +17,6 @@ class BackendController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('check-permissions');
     }
 }

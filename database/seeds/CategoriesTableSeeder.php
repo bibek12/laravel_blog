@@ -35,6 +35,10 @@ class CategoriesTableSeeder extends Seeder
                 'title'=>'Photography',
                 'slug'=>'photography'
             ],
+            [
+                'title'=>'Uncategorized',
+                'slug'=>'uncategorized'
+            ],
         ]);
 
         //update the post data

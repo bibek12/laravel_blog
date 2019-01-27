@@ -41,7 +41,12 @@
             <li><a href="{{route('backend.blog.create')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-folder"></i>Categories</a></li>
+        @if(check_user_permissions(request(),"Categories@index"))
+        <li><a href="{{route('backend.categories.index')}}"><i class="fa fa-folder"></i>Categories</a></li>
+        @endif
+        @if(check_user_permissions(request(),"User@index"))
+        <li><a href="{{route('backend.users.index')}}"><i class="fa fa-user"></i>User</a></li>
+        @endif
       </ul>
       <!-- /.sidebar-menu -->
     </section>
