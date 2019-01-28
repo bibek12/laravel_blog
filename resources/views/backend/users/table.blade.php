@@ -13,7 +13,7 @@
                          <tr>
                              <td>{{$user->name}}</td>
                              <td>{{$user->email}}</td>
-                             <td>{{$user->role}}</td>
+                             <td>{{$user->roles->first()->display_name}}</td>
                              </td>
                              <td>
                              <a href="{{route('backend.users.edit',$user->id)}}" class="btn btn-xs btn-default">

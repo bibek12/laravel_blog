@@ -15,11 +15,10 @@ class BlogController extends Controller
     protected $limit=3;
     public function index(){
 
-        
-     
         $posts=POST::with('user')
        ->latestFirst()
        ->published()
+       ->filter(request('term'))
        ->simplePaginate($this->limit);
        return view("blog.index",compact('posts'));
        

@@ -93,6 +93,22 @@ class Post extends Model
     public function scopeDraft($query){
         return $query->whereNull("published_at");
     }
+
+    public function scopeFilter($query,$term){
+         //check if any item entered
+       if($term){
+        $query->where(function($q) use ($term){
+         $q->whereHas('user',function($qr) use ($term){
+            $qr->where('name','LIKE',"%{$term}%");
+         });
+         $q->orWhereHas('category',function($qr) use ($term){
+            $qr->where('title','LIKE',"%{$term}%");
+         });
+         $q->orwhere('title','LIKE',"%{$term}%");
+         $q->orwhere('excerpt','LIKE',"%{$term}%");
+         });
+    }
+    }
   
     public function getBodyHtmlAttribute($value){
         return $this->body? Markdown::convertToHtml(e($this->body)):NUll;

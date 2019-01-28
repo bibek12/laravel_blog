@@ -45,6 +45,7 @@ class UserController extends BackendController
     {
         //
         $user=User::create($request->all());
+        $user->attachRole($request->role);
         return redirect('/backend/users')->with('message','New user is created successfully');
     }
 
@@ -83,7 +84,11 @@ class UserController extends BackendController
     public function update(Requests\UserUpdateRequest $request, $id)
     {
         //
-        User::findOrFail($id)->update($request->all());
+        $user=User::findOrFail($id);
+        $user->update($request->all());
+        $user->detachRole($request->role);
+        $user->attachRole($request->role);
+
         return redirect('/backend/users')->with('message','User was  updated successfully');
     }
 

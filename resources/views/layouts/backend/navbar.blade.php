@@ -34,7 +34,7 @@
                 <img src="{{$currentName->gavatar()}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{$currentName->name}} - Web Developer
+                  {{$currentName->name}} - {{$currentName->roles->first()->display_name}}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -42,7 +42,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{url('/edit-account')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
